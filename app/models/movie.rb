@@ -25,16 +25,24 @@ class Movie < ActiveRecord::Base
    end
 
    def self.find_movies_after_2002
-    where(release_date: 2002..Date.current.year)
+    where(release_date: 2003..Date.current.year)
    end
 
    def update_with_attributes attributes
     update(attributes)
    end
 
-   def self.update title
-    all.each {|movie| movie.update(title: title)}
-   end
+   def self.update_all_titles(title)
+    update(title: title)
+  end
+
+  def self.delete_by_id id
+    destroy(id)
+  end
+
+  def self.delete_all_movies
+    destroy_all
+  end
 
 
 
